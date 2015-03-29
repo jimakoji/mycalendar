@@ -1,0 +1,19 @@
+<%= form_for @information, :url => { :action => 'create' }, remote: true do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description, :rows => 4, :cols => 30  %>
+  </div>
+
+  <br/>
+
+    <%= f.submit "お知らせ新規作成" %>
+
+<% end %>

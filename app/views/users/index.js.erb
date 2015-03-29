@@ -1,0 +1,18 @@
+$('#flash_for_user_dialog').removeClass().empty();
+
+$('#user_info').html( "<%= escape_javascript(render 'index') %>" ); 
+$('#user_dialog').dialog({
+        title: 'Users / ユーザー一覧',
+        modal: true,
+        position: {
+                 of: '.fc-header',
+                 my: "center top",
+                 at: "center bottom"
+                },
+        width: 660,
+        height: 560,
+        close: function(event, ui) { 
+                 $('#user_dialog').dialog('destroy');
+                 user_dialog_reset();
+               }
+});

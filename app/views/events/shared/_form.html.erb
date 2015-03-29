@@ -1,0 +1,163 @@
+<%# 添付ファイルチェックでレンダーされたときの添付ファイル情報再取得 %>
+<% @attachments = @event.attachments.all if @attachments.blank? %>
+
+<%# 新規作成か？編集か？判断 %>
+<% if params[:action] == 'new' %>
+  <% submit_btn_name = '登録する' %>
+<% else %>
+  <% submit_btn_name = '更新する' %>
+<% end %>
+
+  <%# モデルバリデーションのエラー表示 %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%# フォーム表示 %>
+  <div id = 'title_label'>
+    <%= f.label :title %>
+  </div>
+  <div id = 'title_input'>
+    <%= f.text_field :title %>
+  </div>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, :rows => 4, :cols => 30 %>
+
+  <div id = 'start_end_time_form'>
+    <%= f.label :start_time, :class => :label %>
+    <%= f.datetime_select :start_time %>
+
+    <%= f.label :end_time, :class => :label %>
+    <%= f.datetime_select :end_time %>
+  </div>
+
+  <%# アコーディオンメニューボタン %>
+  <div style = 'margin-top: 8px;'>
+    <span id = 'form_option1' class = 'form_option'>
+      添付ファイル (click me!)
+    </span>
+    <span id = 'form_option2' class = 'form_option' style = 'margin-left: 86px;'>
+      オプション設定 (click me!)
+    </span>
+  </div>
+
+  <%# 登録済みの添付ファイル表示 %>
+  <% if !@attachments.blank? %>
+    <% @attachments.each do |attachment|%>
+      <div>
+        <%= attachment.file_name %> : 
+        <%= number_to_human_size attachment.file_size %> | 
+        <%= link_to '削除', attachment, method: :delete, remote: true, 
+                     data: { confirm: 'You sure? / 削除します' } %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%# アコーディオンメニュー本体 %>
+  <div id = 'attachments_form' style = "display: none;">
+    <% if !@attachments.blank? %>
+      <% @attachments.size > 0 ? info = "新規" : info = "" %>
+
+      <% if @attachments.size < 3 %>
+        <%= label_tag :fileupload, "#{info}添付ファイル (３ファイルまで添付できます。)",
+                                    id: 'fileupload_label', :class => :label %>
+      <% else %>
+        <div class = "alert alert-error" style = "width: 200px; padding: 4px; margin-bottom: 4px;">
+          添付ファイルは３つまで...
+        </div>
+      <% end %>
+    <% else %>
+      <%= label_tag :fileupload, "#{info}添付ファイル (３ファイルまで添付できます。)",
+                                  id: 'fileupload_label', :class => :label %>
+    <% end %>
+
+    <%# 添付ファイルの数を確認し、添付追加可能な数だけ参照ボタン表示 %>
+    <% if !@attachments.blank? %>
+      <% n = @attachments.size %>
+    <% else %>
+      <% n = 0 %>
+    <% end %>
+
+    <% 3.times do |i| %>
+      <% if i < 3 - n %>
+        <div><%= tag :input, { id: "fileupload#{i}",
+                            class: 'fileupload',
+                             type: 'file',
+                         multipul: 'multipul',
+                             name: "file[#{i}][]",
+                         onchange: "check_files(#{i})",
+                            style: 'margin-top: 0px;'} %>
+        </div>
+        <div id = "disp_<%= i %>"><span></span></div>
+
+      <% else %>
+        <div><%= tag :input, { id: "fileupload#{i}",
+                            class: 'fileupload',
+                             type: 'file',
+                         multipul: 'multipul',
+                             name: "file[#{i}][]",
+                         onchange: "check_files(#{i})",
+                            style: 'margin-top: 0px; display: none;'} %>
+        </div>
+        <div id = "disp_<%= i %>"><span></span></div>
+
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <div id = 'option_form' style = "display: none;">
+
+    <%= f.label :classname, :class => :label %>
+    <%= f.select :classname, [["レッド","classname_red"],["ブルー","classname_blue"],["イエロー","classname_yellow"]], selected: "classname_blue" %>
+
+    <%= f.label :allday, :class => :label %>
+    <%= f.check_box :allday %>
+
+    <%= f.label :editable, :class => :label %>
+    <%= f.check_box :editable %>
+
+    <%= f.label :public, :class => :label %>
+    <%= f.check_box :public %>
+  </div>
+
+  <br/>
+    <% if signed_in? %>
+      <%#= submit_tag '登録', id: 'submit_btn', style: 'padding: 2px', disable_with: 'loading...' %>
+      <%#= f.submit id: 'submit_btn', onclick: 'check_browser_and_submit()', style: 'padding: 2px' %>
+      <%#= button_tag '登録', id: 'submit_btn', style: 'padding: 2px' %>
+      <%= button_to_function submit_btn_name, "check_browser_and_submit()", id: 'submit_btn', style: 'padding: 2px' %><%# , data: {disable_with: 'uploading...'} %>
+      <%= image_tag "loading.gif", :id => 'spinner', :style => 'display:none;' %>
+      <span id = 'uploading_text' style = 'display: none;' >uploading...</span>
+    <% else %>
+      <%= f.submit style: 'padding: 2px' %>
+    <% end %>
+
+<script type="text/javascript">
+  //<![CDATA[
+    $(function(){
+        $("#form_option1").on("click", function() {
+           $('#attachments_form').slideToggle();
+        });
+        $("#form_option2").on("click", function() {
+            $('#option_form').slideToggle();
+        });
+        <%# if !@attachments.blank? %>
+          <%# if @attachments.size == 1 %>
+//            $('#fileupload0').hide();
+          <%# elsif @attachments.size == 2 %>
+//            $('#fileupload0').hide();
+//            $('#fileupload1').hide();
+          <%# elsif @attachments.size >= 3 %>
+//            var info = '<div class = "alert alert-error" style = "width: 200px;">添付ファイルは３つまで...</div>'
+//            $('#attachments_form').prepend(info);
+//            $('#fileupload0').hide();
+//            $('#fileupload1').hide();
+//            $('#fileupload2').hide();
+//            $('#fileupload_label').hide();
+          <%# end %>
+        <%# end %>
+    });
+
+ //]]>
+</script>
+

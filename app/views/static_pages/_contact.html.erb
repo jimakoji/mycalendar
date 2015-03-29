@@ -1,0 +1,40 @@
+
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">E_mail</a></li>
+	</ul>
+
+  <div id="tabs-1">
+    <dl id = "contact_site_info" >
+
+      <dt>
+        g_mail: 
+      </dt>
+      <dd style = "display: none;">
+        <a href = "mailto:jima0537@gmail.com" >jima0537@gmail.com</a>
+      </dd>
+      <dt>
+        yahoo:
+      </dt>
+      <dd style = "display: none;">
+        <a href = "mailto:jima0537@yahoo.co.jp" >jima0537@yahoo.co.jp</a>
+      </dd>
+
+    </dl>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  //<![CDATA[
+    $(function(){
+        $("#contact_site_info dt").on("click", function() {
+            $(this).next().slideToggle();
+        });
+        $( "#tabs" ).tabs({ 
+          fx: { opacity: 'toggle', duration: 'normal'  }
+        });
+    });
+ //]]>
+</script>
+

@@ -1,0 +1,16 @@
+$('#user_info').html( "<%= escape_javascript(render 'new_form') %>" ); 
+$('#user_dialog').dialog({
+        title: 'Sign up / ユーザー登録',
+        modal: true,
+        position: {
+                 of: '.fc-header',
+                 my: "center top",
+                 at: "center bottom"
+                },
+        width: 660,
+
+        close: function(event, ui) { 
+                 $('#user_dialog').dialog('destroy');
+                 user_dialog_reset();
+               }
+});

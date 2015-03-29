@@ -1,0 +1,16 @@
+$('#micropost').html( "<%= escape_javascript(render 'new') %>" ); 
+$('#micropost_dialog').dialog({
+        title: 'New Post / 投稿コメント作成',
+        modal: true,
+        position: {
+                 of: '.fc-header',
+                 my: "center top",
+                 at: "center bottom"
+                },
+        width: 500,
+
+        close: function(event, ui) { 
+                 $('#micropost_dialog').dialog('destroy');
+                 micropost_dialog_reset();
+               }
+});

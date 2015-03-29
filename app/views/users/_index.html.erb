@@ -1,0 +1,46 @@
+
+<div>
+  <%= content_tag(:div, "ユーザー総数 : #{User.count}", class: "alert alert-notice", style: "float:left") %>
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "alert alert-#{key}", id: "user_destroyed_info", style: "float:right") %>
+  <% end %>
+</div>
+      
+      <script type="text/javascript">
+      <!--
+      var user_destroyed_info_timer;
+      clearTimeout(user_destroyed_info_timer);
+      user_destroyed_info_timer = setTimeout( function(){
+                                                $('#user_destroyed_info').fadeOut("slow");
+                                              }, '10000');
+      // -->
+      </script>
+
+<ul class="users" style = "clear:both;">
+  <%= render @users %>
+</ul>
+
+<%= paginate @users, :window => 1, :outer_window => 1, :remote => true %>
+
+<% if current_user.admin? %>
+  <%= button_to 'OldEventDelete / 3ヶ月以上前のevent削除',
+                       {:controller => 'events', :action => 'db_cleanup'},
+                        class: 'btn btn-large btn-primary', method: :get, remote: true %>
+  <% session[:current_user_page] = @users.current_page %>
+  <% session[:total_users_in_current_page] = @users.count %>
+<% end %>
+
+<%= button_to 'Reload / リロード',
+                    "users?page=#{@users.current_page}",
+                     id: 'reload_user_index_page_button',
+                     style: "display:none",
+                     method: :get,
+                     remote: true %>
+
+<%= button_to 'Reload prev/ リロード 前ページ',
+                    "users?page=#{@users.current_page - 1}",
+                     id: 'reload_prev_user_index_page_button',
+                     style: "display:none",
+                     method: :get,
+                     remote: true %>
+

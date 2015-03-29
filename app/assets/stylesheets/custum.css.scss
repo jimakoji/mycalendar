@@ -1,0 +1,479 @@
+@import "bootstrap";
+
+$lightGray: #999;
+$grayMediumLight: #eaeaea;
+
+/* mixins, variables, etc. */
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
+}
+
+/* universal */
+
+/*全体要素リセット*/
+*{
+  margin:0;
+  padding:0;
+}
+/* The html and body elements cannot have any padding or margin. */
+html,body {
+  height: 90%;
+}
+
+html {
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+body {
+  padding-top: 50px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+  margin-bottom: 10px;
+  }
+}
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+
+  &:hover {
+    color: $lightGray;
+    text-decoration: none;
+  }
+}
+
+/* home */
+#home {
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-fluid {
+  width: 96%;
+  margin-right: auto;
+  margin-left: auto;
+
+  .row-fluid {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+/* Wrapper for page content to push down footer */
+/*#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;*/
+  /* Negative indent footer by it's height */
+/*  margin: 0 auto -60px;
+  padding: 0 0 60px;
+}*/
+
+#calendar_info {
+  width: 90%;
+  margin-bottom: 2px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+
+#footer {
+  width: 90%;
+  height: 60px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  padding-top: 5px;
+  border-top: 1px solid $grayMediumLight;
+  color: $lightGray;
+
+  a {
+    color: #555;
+
+    &:hover { 
+      color: #222;
+    }
+  }
+
+  small {
+    float: left;
+    padding-bottom: 10px;
+  }
+  ul {
+    float: right;
+    list-style: none;
+
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+.hero-unit {
+  padding: 6px 10px 10px;
+  margin-bottom: 10px;
+
+  h1 {
+    font-size: 50px;
+  }
+
+  h2 {
+    font-size: 2.4em;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+  }
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 0;
+  @include box_sizing;
+}
+
+/* forms */
+/*
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 40%;
+  padding: 2px;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+*/
+
+/* sidebar */
+
+aside {
+  section {
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.6em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+/* typography */
+
+h1,h2,h3,h4,h5,h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  letter-spacing: -1px;
+  text-align: center;
+  font-weight: normal;
+  color: $lightGray;
+}
+
+h3 {
+  font-size: 1.6em;
+  letter-spacing: -1px;
+  text-align: center;
+  font-weight: normal;
+  color: $lightGray;
+  float: left;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+  margin: 0;
+}
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"],
+input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"],
+input[type="week"], input[type="number"], input[type="email"], input[type="url"],
+input[type="search"], input[type="tel"], input[type="color"], .uneditable-input
+{
+    margin-bottom: 0;
+}
+
+.btn.btn-large.btn-primary {
+    margin-bottom: 6px;
+/*    color: white;*/
+}
+
+/* users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+    border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
+/* eroor info */
+
+#sessions_error_explanation, #error_explanation, #error_explanation_js {
+  float: right;
+  color: #f00;
+    .alert.alert-error {
+    }
+    ul {
+      list-style: none;
+      margin: 0 0 18px 0;
+    }
+
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+  margin-bottom: 2px;
+}
+
+/* myCustam */
+
+.label {
+  width: 440px;
+  line-height: 20px;
+  margin: 4px 0px 2px;
+  padding: 2px 4px;
+}
+
+label {
+  margin: 4px 0px 2px;
+}
+
+select {
+  width: 80px;
+  border: 1px solid #bbb;
+  background-color: white;
+}
+
+form {
+  margin-bottom: 0;
+}
+
+.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+    width: 90%;
+}
+
+#event_allday, #event_editable, #event_public {
+  margin-bottom: 6px;
+}
+
+#log_in_btn {
+  margin-right: 40px;
+}
+
+.btn.btn-large.btn-primary {
+    padding: 4px 14px;
+    margin-bottom: 6px;
+}
+
+hr {
+  margin: 6px 0;
+}
+
+dt {
+    cursor: pointer;
+}
+
+.fc-event.classname_green {
+    cursor: pointer;
+}
+
+dt, dd {
+    color: #444;
+}
+
+[class*="span"] {
+float: left;
+margin-left: 20px;
+}
+
+.span2 {
+  height: 100%;
+  margin-left: 10px;
+  padding: 10px;
+  background-color: #eeeeee;
+  border: solid 1px royalblue;
+  border-radius: 10px;        /* CSS3草案 */  
+  -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */  
+  -moz-border-radius: 10px;   /* Firefox用 */ 
+  h4 {
+      color: #999999;
+     }
+  hr {
+      width: 90%;
+      margin: 8px auto 4px;
+      border-color: blue;
+     }
+  p  {
+       line-height: 1.2em;
+       #destroy_link {
+              float: right;
+            }
+     }
+}
+
+#left_side_bar {
+  border-color: pink;
+  hr {
+      width: 90%;
+      margin: 8px auto 4px;
+      border-color: pink;
+     }
+}
+
+.form_option {
+  width: 200px;
+  background-color: #ccc;
+  border: solid 1px royalblue;
+  border-radius: 4px;        /* CSS3草案 */  
+  -webkit-border-radius: 4px;    /* Safari,Google Chrome用 */  
+  -moz-border-radius: 4px;   /* Firefox用 */ 
+  cursor: pointer;
+  padding: 2px 4px;
+}
+
+#email_public {
+  margin-top: 10px;
+  width: 200px;
+}
+
+/* pop down */
+.pop_down {
+background-color:#fff;
+border:1px solid #000;
+border-radius:5px;
+position:relative;
+}
+ 
+.pop_down:before {
+border:10px solid transparent;
+border-bottom-color:#fff;
+border-top-width:0;
+top:-9px;
+content:"";
+display:block;
+left:30px;
+position:absolute;
+width:0;
+z-index:1;
+}
+ 
+.pop_down:after {
+border:10px solid transparent;
+border-bottom-color:#000;
+border-top-width:0;
+top:-10px;
+content:"";
+display:block;
+left:30px;
+position:absolute;
+width:0;
+}
+
+/* jquery tabs */
+#tabs {
+  border: none;
+  padding: 0px;
+  ul {
+    background: none repeat scroll 0 0 #eee;
+    border-top: none;
+    border-bottom: solid 1px #666;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;        /* CSS3草案 */  
+    -webkit-border-radius: 0px;    /* Safari,Google Chrome用 */  
+    -moz-border-radius: 0px;   /* Firefox用 */ 
+    li {
+      border-top-left-radius: 8px;        /* CSS3草案 */  
+      border-top-right-radius: 8px;
+      -webkit-border-top-left-radius: 8px;    /* Safari,Google Chrome用 */  
+      -webkit-border-top-right-radius: 8px;
+      -moz-border-top-left-radius: 8px;   /* Firefox用 */ 
+      -moz-border-top-right-radius: 8px;
+      a {
+       padding: 0.4em 0.6em; 
+       font-size: 80%;
+      }
+    }
+  }
+  div dl dd{
+  background-color: #dedede;
+  padding: 6px;
+  border-radius: 6px;        /* CSS3草案 */  
+  -webkit-border-radius: 6px;    /* Safari,Google Chrome用 */  
+  -moz-border-radius: 6px;   /* Firefox用 */ 
+  }
+}
+
+/* viewer image size */
+
+img {
+  max-width: 200px;
+  max-height: 100px;
+}
+
+#event_info input {
+ padding: 0px 2px;
+}

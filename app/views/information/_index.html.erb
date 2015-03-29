@@ -1,0 +1,37 @@
+
+
+<h4>お知らせ</h4>
+
+<dl>
+
+<% if signed_in? %>
+  <% if current_user.admin? %>
+    <% remote_value = true %>
+  <% end %>
+<% else %>
+  <% remote_value = false %>
+<% end %>
+
+<% @information.each do |information| %>
+    <% time = information.created_at.strftime(" (%-m / %-d)") %>
+    <dt><%= information.title + "　" + time %></dt>
+    <dd style = "display: none;"><%= simple_format information.description %>
+    <% if signed_in? %>
+      <% if current_user.admin? %>
+        <p><span><%= link_to 'Show', information, remote: remote_value %></span>
+        <span><%= link_to 'Edit', edit_information_path(information), remote: remote_value %></span>
+        <span><%= link_to 'Destroy', information, method: :delete, data: { confirm: 'Are you sure? / 削除します' } %></span>
+        </p>
+      <% end %>
+    <% end %>
+
+    </dd>
+
+<% end %>
+</dl>
+
+<% if signed_in? %>
+  <% if current_user.admin? %>
+    <%= button_to 'New Information', new_information_path, method: :get, remote: remote_value %>
+  <% end %>
+<% end %>

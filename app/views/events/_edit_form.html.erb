@@ -1,0 +1,14 @@
+<%= form_for @event, :url => { :action => 'update' }, :html => { :multipart => true }, :remote => true do |f| %>
+
+  <%=f.hidden_field :id, :value => @event.id %>
+
+  <%= render 'events/shared/form', f: f  %>
+
+<% end %>
+
+<%= button_to 'Reload / リロード',
+                    "events/#{@event.id}/edit",
+                     id: 'reload_event_edit_page_button',
+                     style: "display:none",
+                     method: :get,
+                     remote: true %>

@@ -1,0 +1,95 @@
+
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">改善すべき点</a></li>
+		<li><a href="#tabs-2">追加機能の予定</a></li>
+		<li><a href="#tabs-3">その他･･･etc</a></li>
+	</ul>
+  <div id="tabs-1">
+    <dl class = "roadmap_site_info" >
+
+      <dt>
+        Dialog Windowについて
+      </dt>
+      <dd>
+        Dialog Windowをオープンすると画面下部に無駄な余白ができる。
+        その余白を消したい。（原因がよくわからない･･･）
+      </dd>
+
+      <dt>
+        コードをリファクタリングする。
+      </dt>
+      <dd style = "display: none;">
+        思いつきでプログラミングしている部分が多々あり、コードの記述が冗長な部分が多い。
+        整理したい。
+      </dd>
+
+    </dl>
+  </div>
+
+	<div id="tabs-2">
+    <dl class = "roadmap_site_info" >
+
+      <dt>
+        認証機構について: 
+      </dt>
+      <dd>
+        認証機構を'devise'Pluginに差し替え、自動メール配信を可能にする。
+        メールサーバーはGmailかSendGridを利用する予定
+      </dd>
+
+      <dt>
+        ファイルアップロードについて： 
+      </dt>
+      <dd style = "display: none;">
+        ファイルアップロード機能を実装。外部ストレージを使う予定（たとえば'DropBox'）<br/>
+        無理ならデータベースに保存。
+        必要性は感じないが、1時的なファイル置き場として使用できるようにしたい。
+      </dd>
+
+      <dt>
+        ゲーム機能･･･？
+      </dt>
+      <dd style = "display: none;">
+        暇つぶし用のページを作りたい。<br/>
+        例えばゲーム、midiフレーズをgenerateするページ等々
+      </dd>
+
+    </dl>
+  </div>
+
+	<div id="tabs-3">
+    <dl class = "roadmap_site_info" >
+
+      <dt>
+        参考にしたサイト
+      </dt>
+      <dd>
+        Ruby on Rails チュートリアル<a href = "http://railstutorial.jp/" class = 'popup'>http://railstutorial.jp/</a>
+        <br/>
+        初歩的なことから、高度な内容までわかりやすく解説されています。<br/>
+        Michael Hartl さん、ありがとう。
+      </dd>
+
+    </dl>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+  //<![CDATA[
+    $(function(){
+        $(".roadmap_site_info dt").on("click", function() {
+            $(this).next().slideToggle();
+        });
+        $( "#tabs" ).tabs({ 
+          fx: { opacity: 'toggle', duration: 'normal'  }
+        });
+        $(".popup").click(function(){
+          window.open(this.href,"WindowName","width=600,height=500,resizable=yes,scrollbars=yes");
+          return false;
+	      });
+    });
+ //]]>
+</script>

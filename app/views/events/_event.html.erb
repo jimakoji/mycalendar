@@ -1,0 +1,69 @@
+<dt>
+
+  <span class="timestamp">
+
+    <% wdays = ["日", "月", "火", "水", "木", "金", "土"] %>
+
+    <%= "現在進行中!!" if current_user != @user and @in_progress == true %>
+
+    <%# 時間表示 %>
+    <%= time_ago_in_words(event.start_time) %>後
+
+    <% unless @in_progress == true %>
+
+      <%# スタート時間表示 %>
+        <% if event.start_time.day == Time.now.day and event.start_time.month == Time.now.month %>
+          <%= "本日" + event.start_time.strftime("%_H:%M") + " ～" %>
+        <% else %>
+          <%= event.start_time.strftime("%_m/%-d(#{wdays[event.start_time.wday]}) %_H:%M") + " ～" %>
+        <% end %>
+
+      <%# 終了時間表示 %>
+        <% if event.start_time.day == event.end_time.day and event.start_time.month == event.end_time.month %>
+            <% if event.allday == true %>
+              <%= "終日!" %>
+            <% else %>
+              <%= event.end_time.strftime("%_H:%M") %>
+            <% end %>
+        <% else %>
+            <% if event.allday == true %>
+              <%= event.end_time.strftime("%_m/%-d(#{wdays[event.end_time.wday]})") + "まで終日!" %>
+            <% else %>
+              <%= event.end_time.strftime("%_m/%-d(#{wdays[event.end_time.wday]}) %_H:%M") %>
+            <% end %>
+        <% end %>
+
+    <% else %>
+
+        <% if event.end_time.day == Time.now.day  and event.end_time.month == Time.now.month %>
+          <%= event.end_time.strftime("%_H:%M") %>に終了予定
+        <% else %>
+          <%= event.end_time.strftime("%_m/%-d(#{wdays[event.end_time.wday]}) %_H:%M") %>に終了予定
+        <% end %>
+    <% end %>
+
+  </span>
+
+  <% if event.public == true and current_user.id == event.user_id %>
+       <span class="title"><%= event.title + "(公開スケジュール)" %></span>
+  <% else %>
+       <span class="title"><%= event.title %></span>
+  <% end %>
+
+</dt>
+
+<dd style = "display:none;" >
+
+  <%= simple_format("メモ：" + event.description) %>
+
+  <% if event.user_id == current_user.id %>
+    <div>
+      <input type='button' onclick ='editEvent(<%= event.id %>)' id = 'edit_button' name = 'button' value = '編集' >
+      <input type='button' onclick ='deleteEvent(<%= event.id %>)' id = 'delete_button' name = 'button' value = '削除' >
+    </div>
+  <% end %>
+
+</dd>
+
+<hr/>
+

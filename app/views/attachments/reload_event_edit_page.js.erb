@@ -1,0 +1,22 @@
+
+$('#reload_event_edit_page_button').click();
+
+$('#attachment_info').removeClass();
+
+var flash_fadeout_timer;
+var remove_class_empty_timer;
+clearTimeout(flash_fadeout_timer);
+clearTimeout(remove_class_empty_timer);
+
+<% flash.each do |key, value| %>
+  $('#attachment_info').addClass('<%= "alert alert-#{key}" %>').html('<%= value %>' );
+<% end %>
+
+$('#attachment_info').fadeIn("fast");
+
+flash_fadeout_timer = setTimeout( function(){
+                                    $('#attachment_info').fadeOut("slow");
+                                  }, '5000');
+remove_class_empty_timer = setTimeout( function(){
+                                         $('#attachment_info').removeClass().empty();
+                                       }, '6000');

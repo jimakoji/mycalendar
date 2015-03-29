@@ -1,0 +1,25 @@
+
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value.html_safe, class: "alert alert-#{key}" ,id: "sessions_error_explanation") %>
+    <% end %>
+
+    <%= form_for :session, url: sessions_path, :remote => true do |f| %>
+
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+
+      <br/>
+      <%= f.submit "Sign in / ログイン", class: "btn btn-largw btn-primary" %>
+    <% end %>
+
+    <br/>
+    <p>New user? / 未登録の方はユーザー登録をしてください</p>
+    <%= button_to "Sign up now! / ユーザー登録", signup_path, :class => 'btn btn-large btn-primary', :method => :get, :remote => true %>
+

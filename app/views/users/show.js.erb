@@ -1,0 +1,20 @@
+user_dialog_reset(); /* リセットするとページ再描画の際、Flashが消えるため、コメントアウトの予定がしなくてもよくなった？ */
+
+$('#user_info').html( "<%= escape_javascript(render 'show') %>" ); 
+$('#user_dialog').dialog({
+        title: 'Profile / プロファイル',
+        modal: true,
+        position: {
+                 of: '.fc-header',
+                 my: "center top",
+                 at: "center bottom"
+                },
+        width: 660,
+        height: 'auto',
+        close: function(event, ui) { 
+                 $('#user_dialog').dialog('destroy');
+                 $.cookie( 'page_in_now', '' );
+                 user_dialog_reset();
+               }
+});
+

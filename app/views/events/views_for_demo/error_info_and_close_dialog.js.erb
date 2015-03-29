@@ -1,0 +1,13 @@
+
+$('#error_explanation_demo').addClass('alert alert-error').html('<%= simple_format(@info) %>');
+
+var dialog_close_timer_demo;
+dialog_close_timer_demo = setTimeout( function(){
+                      $('#event_dialog').dialog('destroy');
+                      event_dialog_reset();
+                    }, 7000);
+
+$('.ui-dialog-titlebar-close').click(function(){
+  clearTimeout(dialog_close_timer_demo);
+});
+

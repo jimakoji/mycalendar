@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+  <div id="wrap">
+
+    <%= render 'layouts/header' %>
+
+    <% if signed_in? %>
+      <% new_eventID = 'new_event_create' %>
+    <% else %>
+      <% new_eventID = 'new_event_demo' %>
+      <%= render 'static_pages/home' %>
+    <% end %> 
+
+    <%= debug params if Rails.env.development? %>
+    <%= debug $ev2 if Rails.env.development? %>
+
+    <div id = 'calendar_info' >
+      <input type='button' id = <%= new_eventID %> class = 'btn btn-large btn-primary' name = 'button' value = '新規作成' >
+      <span class = "label">＊カレンダー上をクリックしても新規作成、編集、削除できます</span>
+        <% flash.each do |key, value| %>
+          <%= content_tag(:span, value, class: "alert alert-#{key}", id: 'flash' ) %>
+        <% end %>
+
+        <script type="text/javascript">
+        //<![CDATA[
+        setTimeout( function(){
+                      $('#flash').fadeOut("slow");
+                    }, '5000');
+        //]]>
+        </script>
+
+      <span id="flash_info" ></span>
+      <span id="loading" style = "float:right;" ><img src = 'images/loading.gif' alt = 'loading'>　loading...</span><%#更新中表示領域 %>
+    </div>
+
+    <div class="container-fluid">
+
+      <%= yield %>
+
+    </div>
+  </div>
+
+      <%= render 'layouts/footer' %>
+
+  </body>
+</html>
+

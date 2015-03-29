@@ -1,0 +1,16 @@
+
+$('#event_info').html( "<%= escape_javascript(render 'events/views_for_demo/new_form_demo') %>" ); 
+$('#event_dialog').dialog({
+        title: '新規作成(デモ画面)',
+        modal: true,
+        position: {
+                 of: '#calendar_demo',
+                 my: "center top",
+                 at: "center top"
+                },
+        width: 660,
+        close: function(event, ui) {
+                 $('#desc_dialog').dialog('destroy')
+                 event_dialog_reset();
+               }
+});

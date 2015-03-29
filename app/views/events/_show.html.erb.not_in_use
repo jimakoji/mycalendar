@@ -1,0 +1,8 @@
+<%# not in use 2014_01_24 %>
+
+<%= @time_info %>
+<br />
+メモ:
+
+<%= simple_format @event.description %>
+

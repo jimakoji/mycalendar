@@ -1,0 +1,6 @@
+<%= form_for @event, :url => { :action => 'create' }, :html => { :multipart => true }, :remote => true do |f| %>
+
+<%= render 'events/shared/form', f: f  %>
+
+<% end %>
+

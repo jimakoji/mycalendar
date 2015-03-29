@@ -1,0 +1,26 @@
+
+<h4>投稿コメント</h4>
+
+<dl>
+  <% i = 0; display = "display: ;" %>
+  <% @microposts.each do |micropost| %>
+    <% display = "display: none;" if i > 2 %>
+    <% time = micropost.created_at.strftime(" (%-m / %-d)") %>
+    <dt style = 'clear: both;'><%= User.find_by_id(micropost.user_id).name + "さん　" + time %></dt>
+    <dd style = '<%= display %>' ><%= simple_format(micropost.content) %>
+    <% if signed_in? %>
+      <% if current_user.id == micropost.user_id  or current_user.admin? %>
+        <p>
+          <span id = 'destroy_link'><%= link_to '削除', micropost, method: :delete, data: { confirm: 'Are you sure? / 削除します' } %></span>
+        </p>
+      <% end %>
+    <% end %>
+    </dd>
+    <% i += 1 %>
+  <% end %>
+
+</dl>
+
+<% if signed_in? %>
+    <%= button_to 'Post / 投稿する', new_micropost_path, method: :get, remote: true %>
+<% end %>

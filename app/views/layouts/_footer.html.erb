@@ -1,0 +1,23 @@
+<footer id="footer">
+  <small>
+    <span>
+	  Powered by
+    <%= link_to image_tag("ruby-logo2.png", alt: "Ruby", size: '30x30'), 'http://ruby-lang.org/' %>
+  	and
+    <%= link_to image_tag("rails.png", alt: "Rails", size: '30x30'), 'http://rubyonrails.org/' %>
+    </span>
+    <span  style = "margin-left: 40px;">
+    SBCラジオを聴こう!!
+    <%= link_to image_tag("SBC_log.png", alt: "SBC_Radio", size: '60x60'), 'http://sbc21.co.jp/blogwp/radio/' %>
+    </span>
+  </small>
+  <nav>
+    <ul>
+      <li><%= link_to "About：このサイトについて",   about_path, :method => :get, :remote => true %></li>
+      <li><%= link_to "Contact：連絡先 E-mail", contact_path, :method => :get, :remote => true %></li>
+      <li><%= link_to "Roadmap：今後の課題", roadmap_path, :method => :get, :remote => true %></li>
+    </ul>
+  </nav>
+</footer>
+
+

@@ -1,0 +1,111 @@
+
+<div>
+
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "alert alert-#{key}", id: "event_destroyed_or_updated_info", style: "float:right") %>
+  <% end %>
+</div>
+      
+      <script type="text/javascript">
+      <!--
+      var user_destroyed_info_timer;
+      clearTimeout(user_destroyed_info_timer);
+      user_destroyed_info_timer = setTimeout( function(){
+                                                $('#event_destroyed_or_updated_info').fadeOut("slow");
+                                              }, '10000');
+      // -->
+      </script>
+
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user, size: 40 %>
+        <%= @user.name %>
+        <%= "さん" if current_user != @user %>
+      </h1></br>
+      <div>
+      <% if @user.email_public == true %>
+        E_mail : <%= @user.email %>
+      <% end %>
+      </div>
+    </section>
+  </aside>
+
+  <div class="span8">
+
+  <% if @user == current_user %>
+    <% if @events_in_progress.any? %>
+      <% @in_progress = true %>
+      <h3>現在進行中スケジュールは <%= @events_in_progress.count %> 件です</h3>
+      <dl class="events_ac_menu" style ="clear: both;">
+        <%= render @events_in_progress %>
+      </dl>
+    <% end %>
+
+    <% if @events.any? %>
+      <% @in_progress = false %>
+      <h3>これからのスケジュールは <%= @events_in_future.count %> 件です</h3>
+      <dl class="events_ac_menu" style ="clear: both;">
+        <%= render @events %>
+      </dl>
+    <% end %>
+  <% else %>
+    <h3>これからの公開スケジュールは <%= @events_in_progress.count + @events_in_future.count %> 件です</h3>
+    <% if @events_in_progress.any? %>
+      <% @in_progress = true %>
+      <dl class="events_ac_menu" style ="clear: both;">
+        <%= render @events_in_progress %>
+      </dl>
+    <% end %>
+
+    <% if @events.any? %>
+      <% @in_progress = false %>
+      <dl id = "ac_menu" class="events" style ="clear: both;">
+        <%= render @events %>
+      </dl>
+    <% end %>
+  <% end %>
+
+  </div>
+</div>
+
+<%= paginate @events, :remote => true %>
+<br/>
+
+<% if current_user.admin? %>
+  <%= button_to 'Users / ユーザー一覧',
+                       users_path,
+                       class: 'btn btn-large btn-primary',
+                       method: :get,
+                       remote: true %>
+<% end %>
+
+<%= button_to 'Reload / リロード',
+                    "users/#{current_user.id}?page=#{@events.current_page}",
+                     id: 'reload_user_events_page_button',
+                     style: "display:none",
+                     method: :get,
+                     remote: true %>
+
+<%= button_to 'Reload prev/ リロード 前ページ',
+                    "users/#{current_user.id}?page=#{@events.current_page - 1}",
+                     id: 'reload_prev_user_events_page_button',
+                     style: "display:none",
+                     method: :get,
+                     remote: true %>
+
+<% session[:total_events_in_current_page] = @events.count %>
+<%# session[:current_user_event_page] = @events.current_page %>
+<% cookies[:page_in_now] = 'user_show' %>
+
+    <script type="text/javascript">
+    //<![CDATA[
+    $(function(){
+        $(".events_ac_menu dt").on("click", function() {
+            $(this).next().slideToggle();
+        });
+    });
+    //]]>
+    </script>
+

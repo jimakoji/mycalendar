@@ -1,0 +1,114 @@
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">このサイトは･･･</a></li>
+		<li><a href="#tabs-2">開発環境</a></li>
+		<li><a href="#tabs-3">ソースコード･･･etc</a></li>
+	</ul>
+  <div id="tabs-1">
+    <dl id = "about_site_info" >
+
+      <dt>
+        このサイトは管理人が趣味と学習を兼ねて運営しているサイトです。
+        
+      </dt>
+      <dd>
+        つまり、料金が派生する商用サイトではありません。<br/>
+        また、今後も課金の予定はありません。
+      </dd>
+
+      <dt>
+        免責事項
+      </dt>
+      <dd style = "display: none;">
+        このサイトご利用の際は自己責任でお願いします。
+        本サイトに掲載する情報には充分に注意を払っていますが、その内容について保証するものではありません。
+        管理人は本ウェブサイトの使用ならびに閲覧によって生じたいかなる損害にも責任を負いかねます。
+        本サイトのURLや情報は予告なく変更される場合があります。
+      </dd>
+
+      <dt>
+        個人情報について
+      </dt>
+      <dd style = "display: none;">
+        本サイトでは、皆さんがユーザー登録した時の名前、e-mailアドレス等の
+        個人情報は皆さんの当サイトアクセスの目的以外では使用しません。
+        また本サイトでは、皆さんの情報やプライバシーをお守りするために、
+        SSLによる暗号化通信を行っています。
+      </dd>
+
+    </dl>
+  </div>
+
+	<div id="tabs-2">
+    <dl id = "about_site_info" >
+
+      <dt>
+        MyCalendarはRuby on railsを使用して開発しました。
+      </dt>
+      <dd>
+        Windows7上で, Ruby 1.9.3, Rails 3.2.14</br>
+        RubyとRailsのHPのリンクはFooterにあります。
+      </dd>
+      <dt>
+        jQuery カレンダープラグイン、Fullcalendarを使用しています
+      </dt>
+      <dd style = "display: none;">
+        fullecalendarを使うとカレンダーを使ったUI画面を簡単に作ることができるだけでなく、
+        提供されているオプションを使うことで自分独自のデザインやカスタマイズを行えます。<br/>
+        リンクはこちら<a href = "http://arshaw.com/fullcalendar/" class = 'popup'>http://arshaw.com/fullcalendar/</a>
+      </dd>
+
+      <dt>
+        CSSフレームワークのTwitter Bootstrapを使用しています
+      </dt>
+      <dd style = "display: none;">
+        Bootstrapでモダンなデザインのサイトを作ることができます。<br/>
+        リンクはこちら<a href = "http://getbootstrap.com/" class = 'popup'>http://getbootstrap.com/</a>
+      </dd>
+
+    </dl>
+  </div>
+
+	<div id="tabs-3">
+    <dl id = "about_site_info" >
+
+      <dt>
+        このサイトのソースコードがgithub.comで参照、ダウンロードできます
+      </dt>
+      <dd style = "display: none;">
+        リンクはこちら<a href = "https://github.com/jimakoji/mycalendar" class = 'popup'>https://github.com/jimakoji/mycalendar</a>
+      </dd>
+
+      <dt>
+        サーバーはRuby on RailsのPaaS「Heroku」を使っています。
+      </dt>
+      <dd style = "display: none;">
+        HerokuはRuby on Railsを対象とした、Amazon Web Services（AWS）のIaaS上に構築されたPaaSです。
+        デプロイには分散リポジトリのGitを利用するなど、Webアプリケーションの開発から公開まで非常に簡単に
+        できる優れたプラットフォームです。<br/>
+        現在ではRuby以外にもJava、Python、JavaScript（node.js）、Scala、Cloujure、PHP（非公式）などにも対応した
+        マルチ言語なプラットフォームになっています。<br/>        
+        リンクはこちら<a href = "https://github.com/jimakoji/mycalendar" class = 'popup'>https://github.com/jimakoji/mycalendar</a>
+      </dd>
+
+    </dl>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  //<![CDATA[
+    $(function(){
+        $("#about_site_info dt").on("click", function() {
+            $(this).next().slideToggle();
+        });
+        $( "#tabs" ).tabs({ 
+          fx: { opacity: 'toggle', duration: 'normal'  }
+        });
+        $(".popup").click(function(){
+          window.open(this.href,"WindowName","width=600,height=500,resizable=yes,scrollbars=yes");
+          return false;
+	      });
+    });
+  //]]>
+</script>

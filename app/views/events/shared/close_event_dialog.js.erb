@@ -1,0 +1,20 @@
+<% unless flash[:success] == "Event removed! / スケジュール削除完了" %>
+  $('#calendar').fullCalendar( 'refetchEvents' );
+<% else %>
+  $('#calendar').fullCalendar("removeEvents", <%= @event.id %>);
+<% end %>
+
+$('#event_dialog').dialog('destroy');
+event_dialog_reset();
+
+<% if flash[:success] == "Event removed! / スケジュール削除完了" and
+                          session[:total_events_in_current_page] == 1 %>
+  $('#reload_prev_user_events_page_button').click();
+<% else %>
+  $('#reload_user_events_page_button').click();
+<% end %>
+
+<% unless cookies[:page_in_now] == 'user_show' %>
+ <%= render 'shared/flash_message' %>
+<% end %>
+

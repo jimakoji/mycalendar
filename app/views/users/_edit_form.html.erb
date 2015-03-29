@@ -1,0 +1,63 @@
+
+    <%= form_for @user, :url => { :action => 'update' }, :remote => true do |f| %>
+
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      </div>
+      <div>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+      <div>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+      <div>
+        <%= f.label :email_public, :class => :label, id: :email_public %>
+        <%= f.check_box :email_public %>
+      </div>
+
+      <br/>
+
+      <div>
+        <%= f.submit "Save changes / 更新", class: "btn btn-large btn-primary" %>
+      </div>
+    <% end %>
+
+    <hr/>
+
+    <p>
+      <%= gravatar_for @user %>
+      &emsp;
+    </p>
+    <a href="http://gravatar.com/emails" class = "popup" >change / プロフィール画像の変更</a>
+
+      <dl id = 'about_gravator'>
+      <dt class="form_option" style = 'clear:both; margin-top:10px;'>
+          プロフィール写真について
+      </dt>
+      <dd class="pop_down" style = 'padding: 4px; display: none; width: 66%;'>
+        <%= render 'shared/about_gravator' %>
+      </dd>
+      </dl>
+
+<script type="text/javascript">
+  //<![CDATA[
+    $(function(){
+      $(".popup").click(function(){
+        window.open(this.href,"WindowName","width=600,height=500,resizable=yes,scrollbars=yes");
+        return false;
+	    });
+      $("#about_gravator dt").on("hover", function() {
+          $(this).next().slideToggle();
+      });
+    });
+ //]]>
+</script>

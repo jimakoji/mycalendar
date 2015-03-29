@@ -1,0 +1,36 @@
+
+    <%= form_for @user, :url => { :action => 'create' }, :remote => true do |f| %>
+
+      <%= render 'shared/error_messages', object: f.object %>
+
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+
+    <div>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
+
+    <div>
+      <%= f.label :email_public, :class => :label, id: :email_public  %>
+      <%= f.check_box :email_public %>
+    </div>
+
+    <br/>
+
+    <div>
+      <%= f.submit "ユーザー登録", class: "btn btn-large btn-primary" %>
+    </div>
+    <% end %>

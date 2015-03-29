@@ -1,0 +1,8 @@
+
+<% if flash[:success] =~ /^Goodbye!/ and
+                          session[:total_users_in_current_page] == 1 %>
+  $('#reload_prev_user_index_page_button').click();
+<% else %>
+  $('#reload_user_index_page_button').click();
+<% end %>
+

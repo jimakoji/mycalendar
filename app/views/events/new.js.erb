@@ -1,0 +1,23 @@
+if ($('#error_explanation_js')!=null) { $('#error_explanation_js').remove(); }
+
+$('#event_info').html( "<%= escape_javascript(render 'new_form') %>" ); 
+
+$('#event_dialog').dialog({
+        title: 'New Event / 新規作成',
+        modal: false,
+        position: {
+                 of: '.fc-header',
+                 my: "center top",
+                 at: "center bottom"
+                },
+        width: 660,
+
+        close: function(event, ui) { 
+                 $('#event_dialog').dialog('destroy');
+                 event_dialog_reset();
+               }
+});
+
+<% if @file_error_dialog %>
+  alert('<%= escape_javascript @file_error_dialog %>');
+<% end %>

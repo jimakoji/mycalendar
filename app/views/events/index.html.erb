@@ -1,0 +1,37 @@
+
+<%# カレンダー本体表示領域 %>
+
+    <% if signed_in? %>
+      <div class="row-fluid">
+
+        <div class="span10">
+          <div id='calendar'>
+          </div>
+        </div>
+
+    <% else %>
+      <div class="row-fluid">
+
+        <div id = 'left_side_bar' class="span2">
+          <%= render '/events/views_for_demo/how_to_demo' %>
+        </div>
+
+        <div class="span8">
+            <div id='calendar_demo'>
+            </div>
+        </div>
+
+    <% end %>
+
+        <div id = 'right_side_bar' class="span2">
+          <%= render '/information/index' %>
+          <hr/>
+          <div id = 'microposts_index' >
+            <%= render '/microposts/index' %>
+          </div>
+        </div>
+
+      </div>
+
+<%= render '/shared/dialog' %>
+

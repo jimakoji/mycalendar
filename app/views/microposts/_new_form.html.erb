@@ -1,0 +1,14 @@
+<%= form_for @micropost, :url => { :action => 'create' }, remote: true do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div>
+    <%= f.label :content %>
+    <%= f.text_area :content, :rows => 4, :cols => 30  %>
+  </div>
+
+  <br/>
+
+    <%= f.submit %>
+
+<% end %>

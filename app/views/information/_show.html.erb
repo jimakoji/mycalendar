@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  Title:
+  <%= @information.title %>
+</p>
+
+<p>
+  Description:
+  <%= @information.description %>
+</p>
+
+<br/>
+
+<%= button_to 'Edit', edit_information_path(@information), method: :get, remote: true %>
+

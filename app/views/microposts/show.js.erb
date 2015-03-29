@@ -1,0 +1,17 @@
+
+$('#admin_info').html( "<%= escape_javascript(render 'show') %>" ); 
+$('#admin_info_dialog').dialog({
+        title: 'New Information / お知らせ作成',
+        modal: true,
+        position: {
+                 of: '.fc-header',
+                 my: "center top",
+                 at: "center bottom"
+                },
+        width: 660,
+
+        close: function(event, ui) { 
+                 $('#event_dialog').dialog('destroy');
+                 admin_info_dialog_reset();
+               }
+});

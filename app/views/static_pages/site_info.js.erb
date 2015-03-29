@@ -1,0 +1,34 @@
+
+<% 
+  case @flag
+    when 'help'
+      site_info = 'help'
+      title = 'HELP / 使い方'
+    when 'about'
+      site_info = 'about'
+      title = 'ABOUT / このサイトについて'
+    when 'contact'
+      site_info = 'contact'
+      title = 'CONTACT / 連絡先 E_mail'
+    when 'roadmap'
+      site_info = 'roadmap'
+      title = 'ROADMAP / 今後の課題'
+  end
+%>
+
+$('#site_info').html( "<%= escape_javascript(render site_info ) %>" );
+$('#site_info_dialog').dialog({
+        title: '<%= title %>',
+        modal: false,
+        position: {
+                 of: '.fc-header',
+                 my: "center top",
+                 at: "center bottom"
+                },
+        width: 700,
+        close: function(event, ui) {
+                                     $('#site_info_dialog').dialog('destroy');
+                                     $('#site_info').empty();
+                                    }
+});
+

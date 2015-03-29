@@ -1,0 +1,22 @@
+
+    <li>
+      <%= gravatar_for user, size: 40 %>
+      <%= link_to user.name, user, remote: true %>
+      
+      <span style = 'float: right;'>
+      <% if current_user.admin? && !current_user?(user) %>
+        <%= link_to "delete / 削除", user, class: 'form_option', method: :delete, remote: true,
+                                      data: { confirm: "You sure? / #{user.name}さんのユーザー登録を削除します" } %>
+      <% elsif !current_user.admin? && current_user?(user) %>
+        <%= link_to "delete / 登録解除", user, class: 'form_option', method: :delete, remote: true,
+                                      data: { confirm: "You sure? / 登録解除すると、貴方のスケジュールも自動的に全て削除されます、よろしいですか？" } %>
+      <% end %>
+      </span>
+
+      <br/>
+
+      <% if user.email_public == true %>
+       E_mail: <%= user.email %>
+      <% end %>
+    </li>
+

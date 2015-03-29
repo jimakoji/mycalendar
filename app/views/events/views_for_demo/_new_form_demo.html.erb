@@ -1,0 +1,5 @@
+<%= form_for @event, :url => { :action => 'demo_create' }, :remote => true do |f| %>
+
+<%= render 'events/shared/form', f: f  %>
+
+<% end %>
