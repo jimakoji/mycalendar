@@ -27,7 +27,7 @@ end
 group :assets do
   gem 'sass-rails',   '3.2.5'
   gem 'coffee-rails', '3.2.2'
-  gem 'fullcalendar-rails'
+  gem 'fullcalendar-rails',  '1.6.4.0'
   gem 'jquery-fileupload-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
