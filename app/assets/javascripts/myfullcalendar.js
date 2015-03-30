@@ -18,6 +18,7 @@
           },
 
           events: "/events/get_events",
+          
 /*
           eventSources: [   "/events/get_events",//?display_mode=" + disp,
                           {
