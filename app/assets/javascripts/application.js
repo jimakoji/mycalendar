@@ -15,7 +15,6 @@
 //= require jquery-ui
 //= require bootstrap
 //= require fullcalendar
-//= require gcal
 //= require jquery.remotipart
 //= require jquery-fileupload/basic
 //= require_tree .
