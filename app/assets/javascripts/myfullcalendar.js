@@ -17,11 +17,14 @@
                   $('#loading').hide();
           },
 
-          events: "/events/get_events",
+//          events: "/events/get_events",
           
-/*
           eventSources: [   "/events/get_events",//?display_mode=" + disp,
                           {
+                           googleCalendarApiKey: "AIzaSyC7pAdTUBehmWbddDLJZsGtO4zN7FaZAQc",
+                           googleCalendarId: "ja.japanese#holiday@group.v.calendar.google.com",
+                           color: "HotPink"
+/* 
                             url: 'https://www.google.com/calendar/feeds/ja.japanese%23holiday%40group.v.calendar.google.com/public/full/',
                             color: 'pink',
                             success:function(events){
@@ -29,9 +32,9 @@
                                 this.url = null;
                               });
                             },
+*/
                           }
                         ],
-*/
 
 //**セレクトして新規作成
           selectable: true,

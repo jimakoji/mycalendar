@@ -19,7 +19,7 @@
               center: 'title',
               right: 'month,agendaWeek,agendaDay'
           },
-
+          
           loading: function(bool){
               if (bool) 
                   $('#loading').show();
@@ -129,17 +129,22 @@
 	                              			}
 	                              		],
                            },
-/*
+
                           {
-                            url: 'https://www.google.com/calendar/feeds/ja.japanese%23holiday%40group.v.calendar.google.com/public/full/',
+                           googleCalendarApiKey: "AIzaSyC7pAdTUBehmWbddDLJZsGtO4zN7FaZAQc",
+                           googleCalendarId: "ja.japanese#holiday@group.v.calendar.google.com",
+                           color: 'HotPink',
+
+
+/*                           url: 'https://www.google.com/calendar/feeds/ja.japanese%23holiday%40group.v.calendar.google.com/public/full/',
                             color: 'pink',
                             success:function(events){
                               $(events).each(function(){
                                 this.url = null;
                               });
                             }
-                          }
-*/                          
+*/ 
+                          }                         
                         ],
 
 //**セレクトして新規作成
